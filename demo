@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<style>
+
+body{
+
+    padding:0px;
+    margin:0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#header{
+
+    height:30px;
+    width:100%;
+    background-color:#EDEDED;
+}
+
+#logo{
+    float:left;
+    font-weight:bold;
+    font-size:120%;
+    padding: 3px 5px;
+    
+}
+
+#buttonContainer{
+
+  margin: 0 auto;
+  width: 500px;
+  
+  height:20px;
+   
+    
+    
+}
+
+*{
+
+    padding: 0;
+    margin: 0;
+}
+
+.toggleButton{
+
+    padding: 0 30px;
+    float:left;
+    border:1px grey solid;
+    margin :5px 0;
+}
+
+#html{
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#output{
+
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.active{
+
+    background-color: #E8F2FF;
+}
+
+.colorButton{
+
+    background-color: greenyellow;
+}
+
+#htmlPanel{
+
+    
+    
+    border-top:none;
+    border-right-color:lightgreen ;
+}
+
+.panel{
+   
+    float:left;
+    resize: none;
+}
+
+#outputPanel{
+
+    border:none;
+}
+
+.hidden{
+
+    display:none;
+}
+
+.clean{
+
+    clear: both;
+}
+
+</style>
+<body>
+
+    <div id ="header">
+
+        <div id ="logo" >CodePlayer</div>
+        <div id ="buttonContainer">
+
+            <div class ="toggleButton active" id ="html">HTML</div>
+            <div class="toggleButton " id ="css">CSS</div>
+            <div class="toggleButton " id ="javascript">Javascript</div>
+            <div class="toggleButton  active" id ="output"> Output</div>
+
+        </div>
+
+    </div>
+
+    <!-- can not understant here //-->
+    <div class ="clean"></div>
+
+    <div id ="bodyContainer">
+        <textarea id="htmlPanel" class ="panel" >Hellow World</textarea>
+        <textarea id="cssPanel" class ="panel hidden" >Hellow World</textarea>
+        <textarea id="javascriptPanel" class="panel hidden">Hellow World</textarea>
+        <iframe src="" frameborder="0" id ="outputPanel" class = "panel"></iframe>
+        
+
+    </div>
+
+    <script>
+
+
+
+        $(".toggleButton").hover(function handlerIn(){
+
+            
+
+            $(this).addClass("colorButton");
+        },
+
+        function handlerOut(){
+
+            $(this).removeClass("colorButton");
+        }
+        
+         )
+
+         $(".toggleButton").click(
+
+            function clickButton(){
+
+                $(this).toggleClass("active");
+                $(this).removeClass("colorButton");
+                
+                // plus opertor and attribute
+                var panelId =$(this).attr("id") + "Panel";
+                $("#"+panelId).toggleClass("hidden");
+
+                var numberofActivePanels = 4 - ($(".hidden").length);
+
+                $(".panel").width(($(window).width() / numberofActivePanels) - 10);
+                
+
+              
+            }
+             
+         )
+
+         $(".panel").height($(window).height() - $("#header").height());
+
+          $(".panel").width(($(window).width() / 2) - 10);
+
+         $("#htmlPanel").on('change keyup paste', function () {
+
+
+             $("#outputPanel").contents().find("html").html($("#htmlPanel").val());
+              
+            });
+
+         
+       
+    </script>
+    
+</body>
+</html>
