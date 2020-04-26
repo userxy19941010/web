@@ -124,7 +124,7 @@ body{
 
     </div>
 
-    <!-- can not understant here //-->
+    <!-- delete this below line see result //-->
     <div class ="clean"></div>
 
     <div id ="bodyContainer">
